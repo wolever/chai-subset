@@ -206,3 +206,27 @@ describe('cyclic objects', () => {
 		});
 	});
 });
+
+describe('user defined check', () => {
+	var assert = require('chai').assert;
+	after(() => assert.containSubset.options.check = null);
+	before(() => assert.containSubset.options.check = (a, b) => {
+		if (typeof a === 'number' && typeof b === 'number') {
+			return a < b;
+		}
+
+		return null;
+	});
+
+	it('should work', () => {
+		try {
+			assert.containSubset({ foo: 1 }, { foo: 1 });
+			throw new Error('Test should have failed');
+		} catch (e) {
+			// pass
+		}
+
+		assert.containSubset({ foo: 2 }, { foo: 1 });
+		assert.containSubset({ foo: 'a' }, { foo: 'a' });
+	});
+});

@@ -1,6 +1,6 @@
 {
-  "name": "chai-subset",
-  "version": "1.6.0",
+  "name": "@spankchain/chai-subset",
+  "version": "1.7.0",
   "description": "Object properties matcher for Chai",
   "main": "lib/chai-subset.js",
   "scripts": {
